@@ -1,0 +1,21 @@
+# CMake and compiler output
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+*.sln
+*.slnx
+*.vcxproj*
+*.exe
+*.obj
+*.o
+
+# Large simulation outputs. Keep the MATLAB plotting scripts in data*/.
+data*/phi*.m
+data*/[puw].m
+data*/mass*.m
+data*/remarks.m
+data*/*.avi
+data*/fig2*.pdf
+data*/fig2*.eps

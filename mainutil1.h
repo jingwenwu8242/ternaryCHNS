@@ -80,18 +80,6 @@ double sum_vector( double *a, int nl, int nh );
 double dot_product(double *a, double *b, int nl, int nr);
 
 
-void mat_add(double **a, double **b, double **c, 
-              int xl, int xr, int yl, int yr);
-
-
-
-void mat_add2(double **a, double **b, double **c, 
-              double **a2, double **b2, double **c2, 
-              int xl, int xr, int yl, int yr);
-
-
-
-
 void zero_matrix(double **a, int xl, int xr, int yl, int yr);
 
 
@@ -109,11 +97,6 @@ void mat_copy2(double **a, double **b,
 
 void mat_sub(double **a, double **b, double **c, 
             int nrl, int nrh, int ncl, int nch);
-
-void mat_sub2(double **a, double **b, double **c, 
-              double **a2, double **b2, double **c2, 
-              int nrl, int nrh, int ncl, int nch);
-
 
 void matmult(double **a, double **b, double **c, 
               int nrl, int nrh, int ncl, int nch);

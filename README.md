@@ -1,31 +1,47 @@
-This project provides the source code for the paper “Axisymmetric simulation of two-phase fluids in contact with solids.” The code is used to generate the results reported in Section 4.2 (Fig. 9) of the paper.
+# ternaryCHNS: Section 4.3, Fig. 9
 
-Authors
-Jingwen Wu, Junxiang Yang*
-*Corresponding author
+This directory contains the C programs and MATLAB scripts for the **Droplet on a Concave Substrate** example.
 
-File descriptions
+## Cases
 
-In the root folder
-makefile       For macOS, Linux, and WSL (Windows) systems; automates the compilation and cleaning processes.
-CITATION.cff   Standard citation file for this program.
+| Panel | Contact angle | C program | CMake target | Data and MATLAB directory |
+|---|---:|---|---|---|
+| (a), `fig2a` | 30 degrees | `chnsangle5b.c` | `ex2_theta30` | `data5b/` |
+| (b), `fig2b` | 60 degrees | `chnsangle6b.c` | `ex2_theta60` | `data6b/` |
+| (c), `fig2c` | 90 degrees | `chnsangle7b.c` | `ex2_theta90` | `data7b/` |
+| (d), `fig2d` | 120 degrees | `chnsangle8b.c` | `ex2_theta120` | `data8b/` |
 
-In the code folder
-chnsangle.c    Main C source file for simulating axisymmetric two-phase flows in contact with solids.
-main1.h        Header file containing the main variables, parameters, and function declarations.
-mainutil1.h    Header file containing auxiliary utility functions and numerical routines.
-show_figure1.m MATLAB script for visualizing the final 2D x-y state of two-phase flows in contact with solids under the axisymmetric assumption.
+The four programs have the same parameters, initial condition, and boundary conditions. Only the contact angle and output directory differ.
 
-Compilation and execution
+## Main parameters
 
-Open a terminal and run:
-cd /path/to/the/code
-make all
-./chnsangle.out
+- Grid: `nr = nz = 256`
+- Time step: `dt = 1e-6`
+- Number of time steps: 14,000
+- `Re = 1`, `We = 1`, `Pe = 0.01`
+- `rho_1 = rho_2 = 1`, `eta_1 = eta_2 = 1`
+- Gravity and initial velocity: zero
+- Initial droplet radius: `0.2`
+- Initial droplet center: `(r,z) = (0,0.25)`
 
-Deleting all results
+## Build and run
 
-Run:
-make delete
+```text
+cmake -S . -B build
+cmake --build build --config Release
+```
 
-Warning: This command permanently removes all generated data files (e.g., .m files containing computed results) and figure files (e.g., .eps files) from the output directory. This operation is irreversible. Please back up any important results before proceeding.
+On Windows with a Visual Studio generator:
+
+```text
+.\build\Release\ex2_theta30.exe
+.\build\Release\ex2_theta60.exe
+.\build\Release\ex2_theta90.exe
+.\build\Release\ex2_theta120.exe
+```
+
+## MATLAB figures
+
+After a simulation finishes, open its `data5b/`, `data6b/`, `data7b/`, or `data8b/` directory in MATLAB and run `show_giure3.m`.
+
+The scripts use snapshots 3, 21, and 101 and generate `fig2a.pdf`, `fig2b.pdf`, `fig2c.pdf`, or `fig2d.pdf`. Generated simulation data are not included in this package.
